@@ -1,36 +1,37 @@
-
-.row
-{
+.row {
     margin-left: 20px;
-    &__posters
-    {
+
+    &__posters {
         display: flex;
-        overflow-x: scroll ;
-        padding: 20px;
+        overflow-x: scroll;
+        padding: 20px 0;
         overflow-y: hidden;
-        &::-webkit-scrollbar
-        {
+
+        &::-webkit-scrollbar {
             display: none;
         }
+
+        &:before {
+            display: block;
+            content: "";
+        }
     }
 
-    &__poster
-    { 
+    &__poster {
         width: 100%;
-          object-fit: contain;
-        max-height:150px;
+        object-fit: contain;
+        max-height: 150px;
         transition: transform 450ms;
         margin-right: 10px;
-        
-        &:hover{
-    transform: scale(1.08);
+
+        &:hover {
+            transform: scale(1.08);
         }
-        &--large
-        {
+
+        &--large {
             max-height: 250px;
-        
+
         }
     }
-   
-}
 
+}

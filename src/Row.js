@@ -36,8 +36,7 @@ function Row({title, fetchUrl, largerRow}) {
             className={`row__poster ${largerRow ? largerRow : ''}`}
             key={movies.id}
             src={`${base_url}${movies.poster_path}`}
-            alt={movies.name}></img>
-        ))}
+            alt={movies.name}></img>))}
         {modal && (
           <Modal
             style={{backgroundColor: '#111'}}
@@ -52,24 +51,23 @@ function Row({title, fetchUrl, largerRow}) {
                 backgroundPosition: 'center center',
               }}>
               <button name='play' className='modal__playButton'></button>
-              <div className='modal--fadeBottom'></div>
-            </div>
-
-            <div className='modal__contents'>
+              <div className='modal--fadeBottom'>
               <h1 className='modal__title'>
                 {modalMovie?.title ||
                   modalMovie?.name ||
                   modalMovie?.original_name}
               </h1>
-              <h1 className='modal__rating'>{modalMovie.ranking}</h1>
-              <div className='modal__buttons'>
-                <button className='modal__button'>Play Trailer</button>
               </div>
-              <h1 className='banner__description'>{modalMovie?.overview}</h1>
+             </div>
+
+            <div className='modal__contents'>
+              <h1 className='modal__rating'>{modalMovie.ranking}</h1>
+              <div className='Modal__description'>{modalMovie?.overview}</div>
             </div>
           </Modal>
         )}
       </div>
+
     </div>
   );
 }
