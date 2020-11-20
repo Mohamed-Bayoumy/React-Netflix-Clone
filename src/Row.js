@@ -3,7 +3,47 @@ import axios from './axios';
 import './styles/Row.scss';
 import './styles/modal.scss';
 import Modal from 'react-modal';
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import './styles/slick.scss'
 import YouTube from 'react-youtube';
+
+const settings = {
+  dots: false,
+  infinite: false,
+  speed: 500,
+  slidesToShow: 10,
+  slidesToScroll: 5,
+  arrows:true,
+  draggable:false,
+  responsive: [
+    {
+      breakpoint: 1024,
+      settings: {
+        slidesToShow: 5,
+        slidesToScroll: 5,
+      }
+    },
+    {
+      breakpoint: 600,
+      settings: {
+        slidesToShow: 2,
+        slidesToScroll: 2,
+        initialSlide: 2
+      }
+    },
+    {
+      breakpoint: 480,
+      settings: {
+        slidesToShow: 1,
+        slidesToScroll: 1
+      }
+    }
+  ]
+};
+
+
 function Row({title, fetchUrl, largerRow}) {
   const [movies, setMovies] = useState([]);
   const [modal, setModal] = useState(false);
@@ -19,7 +59,6 @@ function Row({title, fetchUrl, largerRow}) {
   }, [fetchUrl]);
   function openModal(movie) {
     setModal(true);
-    console.log(movie);
     setModalMovie(movie);
   }
   return (
@@ -27,7 +66,9 @@ function Row({title, fetchUrl, largerRow}) {
       <h2>{title}</h2>
 
       <div className='row__posters'>
+      <Slider {...settings}>
         {movies.map((movies) => (
+         
           <img
             id={movies.id}
             onClick={() => {
@@ -36,7 +77,11 @@ function Row({title, fetchUrl, largerRow}) {
             className={`row__poster ${largerRow ? largerRow : ''}`}
             key={movies.id}
             src={`${base_url}${movies.poster_path}`}
-            alt={movies.name}></img>))}
+            alt={movies.name}></img>
+            
+         
+            ))}
+             </Slider>
         {modal && (
           <Modal
             style={{backgroundColor: '#111'}}
@@ -61,14 +106,16 @@ function Row({title, fetchUrl, largerRow}) {
              </div>
 
             <div className='modal__contents'>
-              <h1 className='modal__rating'>{modalMovie.ranking}</h1>
-              <div className='Modal__description'>{modalMovie?.overview}</div>
+            <h1 className='modal__rating'>{modalMovie.ranking}</h1>
+              <div className='modal__description'>{modalMovie?.overview}</div>
             </div>
           </Modal>
         )}
+           
       </div>
 
     </div>
+
   );
 }
 
