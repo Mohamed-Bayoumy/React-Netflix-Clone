@@ -3,6 +3,7 @@ import axios from './axios';
 import './styles/Row.scss';
 import './styles/modal.scss';
 import Modal from 'react-modal';
+
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -42,7 +43,6 @@ const settings = {
     }
   ]
 };
-
 
 function Row({title, fetchUrl, largerRow}) {
   const [movies, setMovies] = useState([]);

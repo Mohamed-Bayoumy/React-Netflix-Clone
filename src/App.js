@@ -4,14 +4,16 @@ import Row from "./Row";
 import requests from "./requests";
 import Banner from './Banner'
 import Nav from './Nav'
+import { Provider } from 'react-redux';
 function App() {
   return (
+
       <div className='App'>
       <Nav />
       <Banner />
       <Row
         title='NETFLIX ORIGINALS'
-        fetchUrl={requests.fetchNetflixOriginals} largerRow="row__poster--large"
+        fetchUrl={requests.fetchNetflixOriginals}
       />
       <Row title='TRENDING NOW' fetchUrl={requests.fetchTrending} />
       <Row title='Top Rated' fetchUrl={requests.fetchTopRated} />
@@ -21,6 +23,7 @@ function App() {
       <Row title='Romance Movies' fetchUrl={requests.fetchRomanceMovies} />
       <Row title='Documentaries' fetchUrl={requests.fetchDocumentaries} />
     </div>
+ 
   );
 }
 
